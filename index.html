@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>分页组件</title>
+    <style>
+        #pagination a,#pagination span{
+            display: inline-block;
+            padding: 2px 10px;
+            border: 1px solid #ccc;
+            border-right: none;
+            text-decoration: none;
+        }
+        #pagination a:hover{
+            color: #000;
+        }
+        #pagination a:active {
+            color: #000;
+        }
+        #pagination a:link {
+            color: #000;
+        }
+        #pagination a:visited{
+            color: #000;
+        }
+        #pagination .current{
+            color: red;
+        }
+        #pagination .prev{
+            color: #ccc;
+        }
+        #pagination .next{
+            border-right: 1px solid #ccc;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div id="pagination"></div>
+    <div id="result"></div>
+    <div id="hiddenResutl" style="display: none">
+        <div class="result">内容1</div>
+        <div class="result">内容2</div>
+        <div class="result">内容3</div>
+        <div class="result">内容4</div>
+        <div class="result">内容5</div>
+        <div class="result">内容6</div>
+        <div class="result">内容7</div>
+    </div>
+    <p></p>
+    <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/pagination.js"></script>
+    <script>
+        var totals = $(".result").length;
+        $("#pagination").pagination(totals,{
+            page_size: 1,
+            callback:getData
+        })
+        function getData(page_id){
+            var txt = $('.result').eq(page_id).text();
+            $('#result').empty().append(txt);
+            return false;
+        }
+    </script>
+</body>
+</html>
